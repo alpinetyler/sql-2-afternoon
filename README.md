@@ -139,6 +139,12 @@ WHERE p.name = 'Music';
 
 <summary> <code> #6 </code> </summary>
 
+SELECT t.name
+FROM track t
+JOIN playlist_track pl ON t.track_id = pl.track_id
+WHERE pl.playlist_id = 5
+
+
 ```sql
 SELECT t.name
 FROM track t
@@ -152,6 +158,12 @@ WHERE pt.playlist_id = 5;
 
 <summary> <code> #7 </code> </summary>
 
+SELECT t.name, p.name
+FROM track t
+JOIN playlist_track pl ON t.track_id = pl.track_id
+JOIN playlist p ON pl.playlist_id = p.playlist_id
+
+
 ```sql
 SELECT t.name, p.name
 FROM track t
@@ -164,6 +176,13 @@ JOIN playlist p ON pt.playlist_id = p.playlist_id;
 <details>
 
 <summary> <code> #8 </code> </summary>
+
+SELECT t.name, a.title
+FROM track t
+JOIN album a ON t.album_id = t.album_id
+JOIN genre g ON g.genre_id = t.genre_id
+WHERE g.name='Alternative & Punk';
+
 
 ```sql
 SELECT t.name, a.title
