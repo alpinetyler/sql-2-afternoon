@@ -47,6 +47,13 @@ SELECT a.name, b.name FROM some_table a JOIN another_table b ON a.some_id = b.so
 
 <summary> <code> #1 </code> </summary>
 
+
+SELECT * FROM 
+invoice i
+JOIN invoice_line il ON i.invoice_id = il.invoice_id
+WHERE il.unit_price >  .99
+
+
 ```sql
 SELECT *
 FROM invoice i
@@ -60,6 +67,12 @@ WHERE il.unit_price > 0.99;
 
 <summary> <code> #2 </code> </summary>
 
+
+SELECT i.invoice_date, c.first_name, c.last_name, i.total
+FROM invoice i
+JOIN customer c ON i.customer_id = c.customer_id;
+
+
 ```sql
 SELECT i.invoice_date, c.first_name, c.last_name, i.total
 FROM invoice i
@@ -71,6 +84,12 @@ JOIN customer c ON i.customer_id = c.customer_id;
 <details>
 
 <summary> <code> #3 </code> </summary>
+
+
+SELECT c.first_name, c.last_name, e.first_name, e.last_name
+FROM customer c
+JOIN employee e ON c.support_rep_id = e.employee_id;
+
 
 ```sql
 SELECT c.first_name, c.last_name, e.first_name, e.last_name
@@ -84,6 +103,11 @@ JOIN employee e ON c.support_rep_id = e.employee_id;
 
 <summary> <code> #4 </code> </summary>
 
+SELECT al.title, ar.name
+FROM album al
+JOIN artist ar ON al.artist_id = ar.artist_id;
+
+
 ```sql
 SELECT al.title, ar.name
 FROM album al
@@ -95,6 +119,12 @@ JOIN artist ar ON al.artist_id = ar.artist_id;
 <details>
 
 <summary> <code> #5 </code> </summary>
+
+SELECT pt.track_id
+FROM playlist_track pt
+JOIN playlist pl ON pl.playlist_id = pt.playlist_id
+WHERE pl.name = 'Music';
+
 
 ```sql
 SELECT pt.track_id
