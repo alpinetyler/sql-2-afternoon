@@ -588,6 +588,10 @@ FROM [table];
 
 <summary> <code> #1 </code> </summary>
 
+SELECT DISTINCT composer
+FROM track
+
+
 ```sql
 SELECT DISTINCT composer
 FROM track;
@@ -599,6 +603,9 @@ FROM track;
 
 <summary> <code> #2 </code> </summary>
 
+SELECT DISTINCT billing_postal_code
+FROM invoice
+
 ```sql
 SELECT DISTINCT billing_postal_code
 FROM invoice;
@@ -609,6 +616,10 @@ FROM invoice;
 <details>
 
 <summary> <code> #3 </code> </summary>
+
+SELECT DISTINCT company
+FROM customer
+
 
 ```sql
 SELECT DISTINCT company
@@ -675,6 +686,10 @@ DELETE FROM [table] WHERE [condition]
 
 <summary> <code> #1 </code> </summary>
 
+DELETE FROM practice_delete
+WHERE type = 'bronze';
+
+
 ```sql
 DELETE 
 FROM practice_delete 
@@ -686,6 +701,9 @@ WHERE type = 'bronze';
 <details>
 
 <summary> <code> #2 </code> </summary>
+DELETE FROM practice_delete
+WHERE type = 'silver';
+
 
 ```sql
 DELETE 
@@ -698,6 +716,10 @@ WHERE type = 'silver';
 <details>
 
 <summary> <code> #3 </code> </summary>
+
+DELETE FROM practice_delete
+WHERE value = 150;
+
 
 ```sql
 DELETE 
@@ -735,6 +757,24 @@ Let's simulate an e-commerce site. We're going to need users, products, and orde
 * Run queries against your data.
   * Get all orders for a user.
   * Get how many orders each user has.
+
+  Select product_name 
+SELECT product_name, price
+FROM products p
+JOIN orders o ON o.product_id = p.product_id
+WHERE order_id = 1;
+
+SELECT *
+FROM orders o
+JOIN products p ON o.product_id = p.product_id
+
+ALTER TABLE orders
+ADD user_id INTEGER REFERENCES users(user_id)
+
+
+
+
+
 
 ### Black Diamond
 
