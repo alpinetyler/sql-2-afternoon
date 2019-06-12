@@ -334,7 +334,7 @@ WHERE album_id IN(SELECT album_id
                   IN(SELECT artist_id FROM artist
                      WHERE name = 'Queen'));
 
-                     
+
 ```sql
 SELECT *
 FROM track
@@ -386,6 +386,11 @@ UPDATE athletes SET sport = 'Picklball' WHERE sport = 'pockleball';
 
 <summary> <code> #1 </code> </summary>
 
+UPDATE customer
+SET fax = null
+WHERE fax IS NOT null
+
+
 ```sql
 UPDATE customer
 SET fax = null
@@ -397,6 +402,11 @@ WHERE fax IS NOT null;
 <details>
 
 <summary> <code> #2 </code> </summary>
+
+UPDATE customer
+SET company = 'Self'
+WHERE company IS null;
+
 
 ```sql
 UPDATE customer
@@ -410,6 +420,11 @@ WHERE company IS null;
 
 <summary> <code> #3 </code> </summary>
 
+UPDATE customer
+SET last_name = 'Thompson'
+WHERE last_name = 'Barnett' AND first_name = 'Julia'
+
+
 ```sql
 UPDATE customer 
 SET last_name = 'Thompson' 
@@ -422,6 +437,11 @@ WHERE first_name = 'Julia' AND last_name = 'Barnett';
 
 <summary> <code> #4 </code> </summary>
 
+UPDATE customer
+SET support_rep_id = 4
+WHERE email = 'luisrojas@yahoo.cl'
+
+
 ```sql
 UPDATE customer
 SET support_rep_id = 4
@@ -433,6 +453,13 @@ WHERE email = 'luisrojas@yahoo.cl';
 <details>
 
 <summary> <code> #5 </code> </summary>
+
+UPDATE track
+SET composer = 'The darkness around us'
+WHERE genre_id = (SELECT genre_id FROM genre WHERE
+                  name = 'Metal')
+                  AND composer IS null
+
 
 ```sql
 UPDATE track
@@ -477,6 +504,12 @@ GROUP BY [column];
 
 <summary> <code> #1 </code> </summary>
 
+SELECT COUNT(*), g.name
+FROM track t
+JOIN genre g ON t.genre_id = g.genre_id
+GROUP BY g.name
+
+
 ```sql
 SELECT COUNT(*), g.name
 FROM track t
@@ -489,6 +522,13 @@ GROUP BY g.name;
 <details>
 
 <summary> <code> #2 </code> </summary>
+
+SELECT COUNT(*), g.name
+FROM track t
+JOIN genre g ON t.genre_id = g.genre_id
+WHERE g.name = 'Pop' OR g.name = 'Rock'
+GROUP BY g.name;
+
 
 ```sql
 SELECT COUNT(*), g.name
@@ -503,6 +543,12 @@ GROUP BY g.name;
 <details>
 
 <summary> <code> #3 </code> </summary>
+
+SELECT ar.name, COUNT(*)
+FROM album al
+JOIN artist ar ON ar.artist_id = al.artist_id
+GROUP BY ar.name;
+
 
 ```sql
 SELECT ar.name, COUNT(*)
