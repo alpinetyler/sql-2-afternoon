@@ -243,6 +243,11 @@ SELECT name, Email FROM Athlete WHERE AthleteId IN ( SELECT PersonId FROM PieEat
 
 <summary> <code> #1 </code> </summary>
 
+SELECT * FROM invoice
+WHERE invoice_id IN(SELECT invoice_id FROM invoice_line
+                    WHERE unit_price > .99);
+
+
 ```sql
 SELECT *
 FROM invoice
@@ -254,6 +259,10 @@ WHERE invoice_id IN ( SELECT invoice_id FROM invoice_line WHERE unit_price > 0.9
 <details>
 
 <summary> <code> #2 </code> </summary>
+
+SELECT * FROM playlist_track
+WHERE playlist_id IN (SELECT playlist_id FROM playlist WHERE 
+                      name = 'Music');
 
 ```sql
 SELECT *
@@ -267,6 +276,11 @@ WHERE playlist_id IN ( SELECT playlist_id FROM playlist WHERE name = 'Music' );
 
 <summary> <code> #3 </code> </summary>
 
+SELECT name FROM track
+WHERE track_id IN(SELECT track_id FROM playlist_track WHERE
+                  playlist_id = 5);
+
+
 ```sql
 SELECT name
 FROM track
@@ -278,6 +292,12 @@ WHERE track_id IN ( SELECT track_id FROM playlist_track WHERE playlist_id = 5 );
 <details>
 
 <summary> <code> #4 </code> </summary>
+
+
+SELECT * from track
+WHERE genre_id IN(SELECT genre_id FROM genre WHERE
+                  name = 'Comedy');
+
 
 ```sql
 SELECT *
@@ -291,6 +311,11 @@ WHERE genre_id IN ( SELECT genre_id FROM genre WHERE name = 'Comedy' );
 
 <summary> <code> #5 </code> </summary>
 
+SELECT * FROM track 
+WHERE album_id IN(SELECT album_id FROM album WHERE
+                  title = 'Fireball');
+
+
 ```sql
 SELECT *
 FROM track
@@ -303,6 +328,13 @@ WHERE album_id IN ( SELECT album_id FROM album WHERE title = 'Fireball' );
 
 <summary> <code> #6 </code> </summary>
 
+SELECT * FROM track
+WHERE album_id IN(SELECT album_id 
+                  FROM album WHERE artist_id 
+                  IN(SELECT artist_id FROM artist
+                     WHERE name = 'Queen'));
+
+                     
 ```sql
 SELECT *
 FROM track
